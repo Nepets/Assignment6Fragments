@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 
 class ImageAdapter(private val arrayImageObject: Array<ImageObject?>): RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
@@ -22,13 +23,13 @@ class ImageAdapter(private val arrayImageObject: Array<ImageObject?>): RecyclerV
         return ViewHolder(mangaView,myListener)
     }
     override fun onBindViewHolder(holder: ImageAdapter.ViewHolder, position: Int) {
-        val manga: ImageObject = arrayImageObject!![position]!!
+        val manga: ImageObject = arrayImageObject[position]!!
         val imageViews = holder.imageView
         imageViews.setImageResource(manga.resourceId)
 
     }
     override fun getItemCount(): Int {
-        return arrayImageObject!!.size
+        return arrayImageObject.size
     }
 
     inner class ViewHolder(itemView: View, listener: OnItemClickListener): RecyclerView.ViewHolder(itemView){

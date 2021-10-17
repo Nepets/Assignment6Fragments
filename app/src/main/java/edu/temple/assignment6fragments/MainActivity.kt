@@ -2,25 +2,28 @@ package edu.temple.assignment6fragments
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import java.util.EnumSet.of
+import java.util.List.of
 
 class MainActivity : AppCompatActivity() {
     private lateinit var selectionFrag: SelectionFragment
+    private lateinit var displayFrag: DisplayFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.title = resources.getString(R.string.selection_name)
-
         //val mangaData: Array<ImageObject> = getData()
         val mangaNames = resources.getStringArray(R.array.manga_names)
         val mangaImage: IntArray = intArrayOf(R.drawable.blackclover,R.drawable.chainsawman,
             R.drawable.demonslayer,R.drawable.drstone,R.drawable.dragonball,R.drawable.haikyuu,
             R.drawable.juju,R.drawable.onepunch, R.drawable.seraphend,R.drawable.magi,R.drawable.naruto,
             R.drawable.boruto)
-
         selectionFrag = SelectionFragment.newInstance(mangaNames,mangaImage)
+        displayFrag = DisplayFragment()
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainerView, selectionFrag)
+            .add(R.id.frgContainer1, selectionFrag)
+            .add(R.id.frgContainer2,displayFrag)
             .commit()
 
     }
